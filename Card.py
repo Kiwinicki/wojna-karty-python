@@ -1,18 +1,8 @@
 class Card:
-    def __init__(self, color, value):
+    def __init__(self, value: int, figure: str, color: str):
+        self.value = value
+        self.figure = figure
         self.color = color
-        self.name = str(value)
-        match value:
-            case 'As':
-                self.value = 14
-            case 'Król':
-                self.value = 13
-            case 'Dama':
-                self.value = 12
-            case 'Walet':
-                self.value = 11
-            case other:
-                self.value = value
 
     def __str__(self):
-        return f'Karta {self.name} - {self.color}'
+        return f'Karta figura: {self.figure}, kolor: {self.color}'
