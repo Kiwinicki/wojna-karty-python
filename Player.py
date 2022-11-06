@@ -1,6 +1,6 @@
 class Player:
     def __init__(self, name, cards):
-        self.name = f'Gracz nr {name}'
+        self.name = f'Gracz {name}'
         self.cards = cards
 
     def __str__(self):

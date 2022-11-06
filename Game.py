@@ -11,7 +11,6 @@ class Game:
         self.deck = Deck()
         self.players = []
         self.round_num = 1
-        self.winner = None
 
     def init_game(self):
         print('--- Symulacja karcianej gry w wojnę ---')
@@ -52,7 +51,7 @@ class Game:
         print('Wojna między graczami: ', end='')
         print(*players, sep=", ")
         hidden_cards = []
-        cards_in_war = []
+        visible_cards = []
         for i, player in enumerate(players):
             # at the beginning, player put his card from bottom to top
             hidden_cards.append(player.place_card())
@@ -60,22 +59,22 @@ class Game:
 
             # after that, player put cards with value on top
             player_card = player.place_card()
-            cards_in_war.append(player_card)
+            visible_cards.append(player_card)
             print(f'   {player}: {player_card}')
 
         # check who laid the best card
-        players_in_war_indexes = self.compare_cards(cards_in_war)
+        players_in_war_indexes = self.compare_cards(visible_cards)
         players_in_war = [self.players[i] for i in players_in_war_indexes]
 
         if len(players_in_war) == 1:
             cards_in_round.extend(hidden_cards)
-            cards_in_round.extend(cards_in_war)
+            cards_in_round.extend(visible_cards)
             return (players_in_war[0], cards_in_round)
         else:
             print('Wojna w wojnie...')
             cards_in_round.extend(hidden_cards)
-            cards_in_round.extend(cards_in_war)
-            self.war(players_in_war, cards_in_round)
+            cards_in_round.extend(visible_cards)
+            return self.war(players_in_war, cards_in_round)
 
     def next_round(self):
         print('Stan graczy: ')

@@ -5,4 +5,4 @@ class Card:
         self.color = color
 
     def __str__(self):
-        return f'Karta figura: {self.figure}, kolor: {self.color}'
+        return f'Karta (figura: {self.figure}, kolor: {self.color})'
